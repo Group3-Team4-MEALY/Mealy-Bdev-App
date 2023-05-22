@@ -2,6 +2,7 @@ import express  from "express";
 import mongoose from "mongoose";
 import morgan from "morgan"
 import {config} from "./src/config/index.js"
+import {globalErrorHandler} from "./src/utils/error.handler.js"
 
 const app = express()
 
@@ -11,6 +12,8 @@ const port = config.port || 4000
 
 app.use(morgan('tiny'))
 app.use(express.json())
+
+app.use(globalErrorHandler)
 
 
 app.listen(port, () => console.log(`To the glory of God server running on ${port}`))
