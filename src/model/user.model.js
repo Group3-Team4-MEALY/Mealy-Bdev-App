@@ -33,4 +33,4 @@ UserSchema.pre("save", function(next){
   next()
 })
 
-export default model (User, UserSchema)
+export default model ("User", UserSchema)

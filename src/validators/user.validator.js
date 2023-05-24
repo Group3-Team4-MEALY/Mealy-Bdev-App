@@ -1,6 +1,6 @@
-import joi from "joi";
+import Joi from 'joi'
 
-export const createUserValidator = joi.object({
+export const createUserValidator = Joi.object({
   username: Joi.string().required(),
   email: Joi.string().regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
   .required()
