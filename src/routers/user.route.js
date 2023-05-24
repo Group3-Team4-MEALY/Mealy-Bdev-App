@@ -14,8 +14,9 @@ router.put('/:id', tryCatchHandler( UserController.findUser) )
 
 router.delete('/:id', tryCatchHandler( UserController.deleteOneUser) )
 
-
 router.post("/login", tryCatchHandler( UserController.loginUser) )
+
+//router.post("/send-mail", tryCatchHandler( UserController.sendMai) )
 
 
 

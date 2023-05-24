@@ -13,3 +13,19 @@ export class BadUserRequestError extends Error {
     this.errorType = "BadUserRequestError";
   }
 }
+export class UnAuthorizedError extends Error {
+  constructor(message){
+    super(message)
+    this.status = 401;
+    this.errorType = "UnAuthorizedError";
+  }
+}
+
+export class MailNotSentError extends Error {
+  constructor(message){
+    super(message)
+    this.status = 401;
+    this.errorType = "MailNotSentError";
+  }
+}
+
