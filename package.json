@@ -1,7 +1,7 @@
 {
   "name": "mealy-bdev-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "**This is a restaurant application that allow users to browse their favourite restaurants.** They can:<br>",
   "main": "app.js",
   "scripts": {
     "start-dev": "set NODE_ENV=development && nodemon app.js"
