@@ -2,6 +2,7 @@ import express  from "express";
 import mongoose from "mongoose";
 import morgan from "morgan"
 import {config} from "./src/config/index.js"
+import {globalErrorHandler} from "./src/utils/errorHandler.js"
 import {router as userRouter} from "./src/routers/user.route.js"
 import {router as restaurantRouter} from "./src/routers/restaurant.route.js"
 
@@ -16,5 +17,7 @@ app.use(express.json())
 
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/restaurant', restaurantRouter)
+
+app.use(globalErrorHandler)
 
 app.listen(port, () => console.log(`To the glory of God server running on ${port}`))
