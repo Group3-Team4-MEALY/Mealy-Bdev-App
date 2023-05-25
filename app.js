@@ -8,7 +8,7 @@ import {router as restaurantRouter} from "./src/routers/restaurant.route.js"
 
 const app = express()
 
-await mongoose.connect(config.mongodb_connection_url).then(()=> console.log("Database connection established")).catch(e=> console.log("Mongo connection error: ", e.message))
+ mongoose.connect(config.mongodb_connection_url).then(()=> console.log("Database connection established")).catch(e=> console.log("Mongo connection error: ", e.message))
 
 
 const port = config.port || 4000;
