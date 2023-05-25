@@ -1,16 +1,17 @@
 import express  from "express";
 import mongoose from "mongoose";
-import morgan from "morgan"
-import {config} from "./src/config/index.js"
+import morgan from "morgan";
 import {globalErrorHandler} from "./src/utils/errorHandler.js"
+import { config } from "./src/config/index.js";
 import {router as userRouter} from "./src/routers/user.route.js"
 import {router as restaurantRouter} from "./src/routers/restaurant.route.js"
 
 const app = express()
 
-mongoose.connect(config.mongodb_connection_url, { useNewUrlParser: true, useUnifiedTopology: true }).then(()=> console.log("Database connection established")).catch(e=> console.log("Database connection error: ", e.message))
+mongoose.connect(config.mongodb_connection_url).then(()=> console.log("Database connection established")).catch(e=> console.log("Mongo connection error: ", e.message))
 
-const port = config.port || 4000
+
+const port = config.port || 4000;
 
 app.use(morgan('tiny'))
 app.use(express.json())
@@ -20,4 +21,6 @@ app.use('/api/v1/restaurant', restaurantRouter)
 
 app.use(globalErrorHandler)
 
-app.listen(port, () => console.log(`To the glory of God server running on ${port}`))
+app.listen(port, ()=>{
+  console.log(`To the glory of God server runnning on port: ${port}`)
+})
