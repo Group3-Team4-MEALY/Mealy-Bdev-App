@@ -62,6 +62,30 @@ export default class UserController {
     })
   }
   
-  
+  static async loginUser(req, res) {
+    const { error } = loginUserValidator.validate(req.body)
+    if (error) throw error
+    if (!req.body?.username && !req.body?.email) throw new BadUserRequestError("Please provide a username and email before you can login.")
+    const user = await User.findOne({
+      $or: [
+        {
+          email: req.body?.email,
+        },{
+          username: req.body?.username,
+        }
+      ]
+    })
+    if(!user) throw new BadUserRequestError("username, email does not exist")
+    const hash = bcrypt.compareSync(req.body.password, user.password)
+    if(!hash) throw new BadUserRequestError("username, email or password is wrong!")
+    res.status(200).json({
+      message: "User found successfully",
+      status: "Success",
+      data: {
+        user,
+        access_token: generateToken(user)
+      }
+    })
+  }
 
 }
