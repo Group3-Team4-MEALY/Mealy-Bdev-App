@@ -7,6 +7,7 @@ import bcrypt from "bcrypt"
 import {config} from "../config/index.js"
 import nodemailer from 'nodemailer'
 import smtpTransport from 'nodemailer-smtp-transport';
+import sendEmail from "../utils/mail.handler.js"
 
 
 export default class UserController {
@@ -27,8 +28,9 @@ export default class UserController {
       email: req.body.email,
       password: hashedPassword
     }
-
+    
     const newUser = await User.create(user)
+    await sendEmail(user.email, "Nodemailer", "My first Nodemailer")
     res.status(200).json({
       message: "User created successfully",
       status: "Success",
@@ -38,6 +40,7 @@ export default class UserController {
       }
     })
   }
+
   static async findUser(req, res,) {
     const { id } = req.query
     const { error } = mongoIdValidator.validate(req.query)
@@ -80,6 +83,5 @@ export default class UserController {
       }
     })
   }
-
 
 }
