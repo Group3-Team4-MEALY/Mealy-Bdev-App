@@ -1,7 +1,7 @@
 {
   "name": "mealy-bdev-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "**This is a restaurant application that allow users to browse their favourite restaurants.** They can:<br>",
   "main": "app.js",
   "scripts": {
     "start-dev": "set NODE_ENV=development && nodemon app.js",
@@ -30,7 +30,7 @@
     "mongoose": "^7.2.0",
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.2",
-    "nodemailer-smtp-transport": "^2.7.4"
+    "nodemailer-smtp-transport": "^2.4.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

@@ -1,5 +1,5 @@
 import { UnAuthorizedError} from "../error/error.js"
-import {verifyToken} from "../utils/jwt.utils.js"
+import {verifyToken} from "../utils/jwt.js"
 
 export function userAuthMiddleWare(req, res, next){
   const token = req.headers?.authorization?.split(" ")[1];

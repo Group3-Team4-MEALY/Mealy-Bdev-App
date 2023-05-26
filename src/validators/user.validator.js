@@ -1,24 +1,22 @@
 import Joi from 'joi'
 
-export const createUserValidator = Joi.object({
-  username: Joi.string().required(),
+export const signUpUserValidator = Joi.object({
+  firstName: Joi.string().required().min(3).max(255),
   email: Joi.string().regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
   .required()
   .messages({
     'string.pattern.base': 'Invalid email address',
   }),
-  password: Joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/)
+  password: Joi.string().regex(/^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/)
   .required()
   .messages({
-    'string.pattern.base': 'You need one number, one alphanumeric character and one in caps, password be more than 7 characters long',
+    'string.pattern.base': 'Your password must be at least 8 characters long, with a letter and a number',
   }),
-  firstName: Joi.string().optional(),
-  lastName: Joi.string().optional(),
-}).strict()
+ }).strict()
 
 
 export const loginUserValidator = Joi.object({
-  username:Joi.string().optional(),
-  email:Joi.string().optional(),
+  firstName:Joi.string().optional(),
+  email:Joi.string().required(),
   password: Joi.string().required()
 }).strict()

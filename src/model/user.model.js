@@ -1,17 +1,11 @@
 import {Schema, model} from "mongoose";
 
 const UserSchema = new Schema({
-  username: {
+   firstName: {
     type: String,
-    required: true,
-    lowercase: true,
-    unique: true,
     min: 3,
     max: 255
   },
-  firstName: String,
-  lastName: String,
-  fullName: String,
   email: {
     type: String,
     required: true,
@@ -21,16 +15,13 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
-    required: true
+    
   }
 },
 {
   timestamps: true
 })
 
-UserSchema.pre("save", function(next){
-  this.fullName = this.firstName + " " +  this.lastName 
-  next()
-})
+
 
 export default model ("User", UserSchema)
