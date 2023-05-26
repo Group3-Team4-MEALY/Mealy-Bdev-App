@@ -28,8 +28,6 @@ export default class UserController {
       email: req.body.email,
       password: hashedPassword
     }
-
-
     
     const newUser = await User.create(user)
     await sendEmail(user.email, "Nodemailer", "My first Nodemailer")
