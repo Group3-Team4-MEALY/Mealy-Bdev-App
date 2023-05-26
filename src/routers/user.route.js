@@ -22,8 +22,4 @@ router.post("/login", tryCatchHandler( UserController.loginUser) )
 
 
 
-//router.post("/send-mail", tryCatchHandler( UserController.sendMai) )
-
-
-
 export { router }
