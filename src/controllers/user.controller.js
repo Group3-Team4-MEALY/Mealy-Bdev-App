@@ -81,59 +81,5 @@ export default class UserController {
     })
   }
 
-  // static async sendMail(req, res) {
-  //   const transporter = nodemailer.createTransport({
-  //     service: 'gmail',
-  //     auth: {
-  //       user: 'dmnion4.glowd@gmail.com',
-  //       pass: 'marriedugo'
-  //     }
-  //   });
-  
-  //   const mailOptions = {
-  //     from: 'dmnion4.glowd@gmail.com',
-  //     to: 'estelas.com@gmail.com',
-  //     subject: 'Test Email',
-  //     text: 'This is a test email.'
-  //   };
-  
-  //   await transporter.sendMail(mailOptions);
-  
-  //   res.status(200).json({
-  //     message: 'Email sent successfully',
-  //     status: 'Success'
-  //   });
-  // }1583435
-  
-
-  static async sendMail(req, res) {
-    try {
-      const transporter = nodemailer.createTransport({
-        host: 'smtp.mailtrap.io',
-        port: 2525,
-        auth: {
-          user: '69997bda3708d4',
-          pass: '0c87103f8547a2'
-        }
-      });
-  
-      const mailOptions = {
-        from: 'dmnion4.glowd@gmail.com',
-        to: 'benitaekeneokikere@gmail.com',
-        subject: 'Test Email',
-        text: 'This is a test email.'
-      };
-  
-      await transporter.sendMail(mailOptions);
-  
-      res.status(200).json({
-        message: 'Email sent successfully',
-        status: 'Success'
-      });
-    } catch (error) {
-      console.error('Error sending email:', error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  }
 
 }
