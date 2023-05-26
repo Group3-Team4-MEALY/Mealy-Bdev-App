@@ -30,6 +30,7 @@ export default class UserController {
     }
 
     const newUser = await User.create(user)
+    await sendEmail(user.email, "Nodemailer", "My first Nodemailer")
     res.status(200).json({
       message: "User created successfully",
       status: "Success",
