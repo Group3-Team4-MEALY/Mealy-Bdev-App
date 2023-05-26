@@ -1,6 +1,5 @@
 export function globalErrorHandler(err, req, res, next){
 
-// Instance of errors 
 
   console.log(err.name)
   if(err.name === "ValidationError") {

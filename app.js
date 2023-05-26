@@ -6,6 +6,8 @@ import { config } from "./src/config/index.js";
 import {router as userRouter} from "./src/routers/user.route.js"
 import {router as restaurantRouter} from "./src/routers/restaurant.route.js"
 
+
+
 const app = express()
 
  mongoose.connect(config.mongodb_connection_url).then(()=> console.log("Database connection established")).catch(e=> console.log("Mongo connection error: ", e.message))
@@ -18,6 +20,7 @@ app.use(express.json())
 
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/restaurant', restaurantRouter)
+
 
 app.use(globalErrorHandler)
 
