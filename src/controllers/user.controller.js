@@ -7,7 +7,7 @@ import bcrypt from "bcrypt"
 import {config} from "../config/index.js"
 import nodemailer from 'nodemailer'
 import smtpTransport from 'nodemailer-smtp-transport';
-import sendEmail from "../utils/mail.handler.js"
+
 import jwt from "jsonwebtoken"
 
 
