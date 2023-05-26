@@ -4,7 +4,9 @@
   "description": "**This is a restaurant application that allow users to browse their favourite restaurants.** They can:<br>",
   "main": "app.js",
   "scripts": {
-    "start-dev": "set NODE_ENV=development && nodemon app.js"
+    "start-dev": "set NODE_ENV=development && nodemon app.js",
+    "start-staging": "set NODE_ENV=staging && nodemon app.js",
+    "start-prod": "set NODE_ENV=production && nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,11 @@
     "joi-objectid": "^4.0.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.2",
+    "nodemailer-smtp-transport": "^2.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

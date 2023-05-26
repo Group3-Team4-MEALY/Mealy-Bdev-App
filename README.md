@@ -1,5 +1,5 @@
 # Mealy App
-**This is a restaurant application that allow users to browse their favourite restaurants.** They can:<br>
+**This is a restaurant application that allows users to browse their favourite restaurants.** They can:<br>
 
 creat account<br>
 search  categories of items/meals<br>
