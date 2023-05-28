@@ -1,7 +1,9 @@
 import Joi from 'joi'
 
-export const createUserValidator = Joi.object({
-  username: Joi.string().required(),
+
+export const userSignUpValidator = Joi.object({
+  userName: Joi.string().required(),
+  userAddress: Joi.string().optional(),
   email: Joi.string().regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
   .required()
   .messages({
@@ -11,14 +13,26 @@ export const createUserValidator = Joi.object({
   .required()
   .messages({
     'string.pattern.base': 'You need one number, one alphanumeric character and one in caps, password be more than 7 characters long',
-  }),
-  firstName: Joi.string().optional(),
-  lastName: Joi.string().optional(),
+  }) 
 }).strict()
 
 
-export const loginUserValidator = Joi.object({
-  username:Joi.string().optional(),
-  email:Joi.string().optional(),
+export const userLoginValidator = Joi.object({
+  email:Joi.string().required(),
   password: Joi.string().required()
 }).strict()
+
+
+export const userUpdateValidator = Joi.object({
+  email: Joi.string().regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+  .required()
+  .messages({
+    'string.pattern.base': 'Email not found',
+  }),
+  password: Joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/)
+  .required()
+  .messages({
+    'string.pattern.base': 'Password not found',
+  }) 
+}).strict()
+

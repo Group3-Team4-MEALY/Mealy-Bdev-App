@@ -4,20 +4,17 @@ import { tryCatchHandler } from '../utils/tryCatch.handler.js'
 
 const router = new express.Router()
 
-router.post("/create", tryCatchHandler( UserController.createUser) )
+router.post("/signUp", tryCatchHandler( UserController.userSignUp) )
 
-router.get("/", tryCatchHandler( UserController.findUser) )
+router.post("/login", tryCatchHandler( UserController.userLogin) )
 
-router.get('/:id', tryCatchHandler( UserController.findUser) )
+router.patch('/:id', tryCatchHandler( UserController.userUpdate) )
 
-router.put('/:id', tryCatchHandler( UserController.findUser) )
+router.post('/password-reset', tryCatchHandler( UserController.sendPassordLink) )
+
+router.post('/password-reset/:userId/:token', tryCatchHandler( UserController.resetUserPassword) )
 
 router.delete('/:id', tryCatchHandler( UserController.deleteOneUser) )
-
-router.post("/login", tryCatchHandler( UserController.loginUser) )
-
-//router.post("/send-mail", tryCatchHandler( UserController.sendMai) )
-
 
 
 export { router }

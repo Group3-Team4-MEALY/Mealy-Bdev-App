@@ -9,6 +9,7 @@ const app = express()
 
 mongoose.connect(config.mongodb_connection_url).then(()=> console.log("Database connection established")).catch(e=> console.log("Database connection error: ", e.message))
 
+
 const port = config.port || 4000
 
 app.use(morgan('tiny'))

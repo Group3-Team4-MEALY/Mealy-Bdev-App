@@ -1,7 +1,8 @@
+import joi from "joi";
 import {Schema, model} from "mongoose";
 
 const UserSchema = new Schema({
-  username: {
+  userName: {
     type: String,
     required: true,
     lowercase: true,
@@ -9,9 +10,9 @@ const UserSchema = new Schema({
     min: 3,
     max: 255
   },
-  firstName: String,
-  lastName: String,
-  fullName: String,
+  userAddress: {
+  type: String,
+  }, 
   email: {
     type: String,
     required: true,
@@ -26,11 +27,6 @@ const UserSchema = new Schema({
 },
 {
   timestamps: true
-})
-
-UserSchema.pre("save", function(next){
-  this.fullName = this.firstName + " " +  this.lastName 
-  next()
 })
 
 export default model ("User", UserSchema)
