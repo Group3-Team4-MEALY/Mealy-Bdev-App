@@ -70,29 +70,8 @@ export default class UserController {
       },
     });
   }
-  
  
   
-  static async userUpdate(req, res){
-    const { id } = req.query
-    const userUpdateValidatorResponse = await userUpdateValidator.validate(req.body)
-    const userUpdateError = userUpdateValidatorResponse.error
-    if(userUpdateError) throw userUpdateError
-
-    const user = await User.findById(id)
-    if(!user) throw new NotFoundError(`The user with this id: ${id}, does not exist`)
-
-    const updatedUser = await User.findByIdAndUpdate(id, req.body, {new: true})
-    return res.status(200).json({
-      message: "User updated successfully",
-      status: "Success",
-      data:{
-        user: updatedUser
-      }
-    })
-  }
-
-
   static async forgotPassword(req, res) {
     try {
         const { error } = passwordResetValidator.validate(req.body);
@@ -146,7 +125,25 @@ static async resetUserPassword(req, res) {
   }
 }
 
+  
+  static async userUpdate(req, res){
+    const { id } = req.query
+    const userUpdateValidatorResponse = await userUpdateValidator.validate(req.body)
+    const userUpdateError = userUpdateValidatorResponse.error
+    if(userUpdateError) throw userUpdateError
 
+    const user = await User.findById(id)
+    if(!user) throw new NotFoundError(`The user with this id: ${id}, does not exist`)
+
+    const updatedUser = await User.findByIdAndUpdate(id, req.body, {new: true})
+    return res.status(200).json({
+      message: "User updated successfully",
+      status: "Success",
+      data:{
+        user: updatedUser
+      }
+    })
+  }
 
 static async logoutUser(req, res) {
   try {
