@@ -1,9 +1,10 @@
 import User from "../model/user.model.js"
-import { userSignUpValidator, userLoginValidator, userUpdateValidator } from "../validators/user.validator.js"
+import { userSignUpValidator, userLoginValidator, userUpdateValidator, passwordResetValidator } from "../validators/user.validator.js"
 import { mongoIdValidator } from "../validators/mongoId.validator.js"
 import { BadUserRequestError, NotFoundError } from "../error/error.js"
 import {generateToken} from "../utils/jwt.js"
 import bcrypt from "bcrypt"
+import crypto from "crypto"
 import Token from "../model/token.model.js"
 import nodemailer from 'nodemailer'
 import smtpTransport from 'nodemailer-smtp-transport';
@@ -92,10 +93,9 @@ export default class UserController {
   }
 
 
-  static async sendPassordLink(req, res) {
+  static async forgotPassword(req, res) {
     try {
-        // const schema = Joi.object({ email: Joi.string().email().required() });
-        // const { error } = schema.validate(req.body);
+        const { error } = passwordResetValidator.validate(req.body);
         if (error) return res.status(400).send(error.details[0].message);
 
         const user = await User.findOne({ email: req.body.email });
@@ -121,12 +121,10 @@ export default class UserController {
 }
 
 
-
 static async resetUserPassword(req, res) {
   try {
-      const schema = Joi.object({ password: Joi.string().required() });
-      const { error } = schema.validate(req.body);
-      if (error) return res.status(400).send(error.details[0].message);
+    const { error } = passwordResetValidator.validate(req.body);
+        if (error) return res.status(400).send(error.details[0].message);
 
       const user = await User.findById(req.params.userId);
       if (!user) return res.status(400).send("Invalid link or expired");
@@ -141,7 +139,7 @@ static async resetUserPassword(req, res) {
       await user.save();
       await token.delete();
 
-      res.send("Password reset successfully.");
+      res.send("Password reset is successful.");
   } catch (error) {
       res.send("An error occurred");
       console.log(error);

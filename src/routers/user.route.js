@@ -10,7 +10,7 @@ router.post("/login", tryCatchHandler( UserController.userLogin) )
 
 router.patch('/:id', tryCatchHandler( UserController.userUpdate) )
 
-router.post('/password-reset', tryCatchHandler( UserController.sendPassordLink) )
+router.post('/reset-password', tryCatchHandler( UserController.forgotPassword) )
 
 router.post('/password-reset/:userId/:token', tryCatchHandler( UserController.resetUserPassword) )
 

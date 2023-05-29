@@ -24,15 +24,20 @@ export const userLoginValidator = Joi.object({
 
 
 export const userUpdateValidator = Joi.object({
+  userName: Joi.string().optional(),
+  userAddress: Joi.string().optional(),
   email: Joi.string().regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
-  .required()
+  .optional()
   .messages({
     'string.pattern.base': 'Email not found',
   }),
   password: Joi.string().regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/)
-  .required()
+  .optional()
   .messages({
     'string.pattern.base': 'Password not found',
   }) 
 }).strict()
 
+export const passwordResetValidator = Joi.object({
+  email:Joi.string().required()
+}).strict()
